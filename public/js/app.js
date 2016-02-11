@@ -1,4 +1,4 @@
-angular.module('WineApp', [])
+angular.module('wineApp', ['ui.router'])
   .controller('WinesIndexController', WinesIndexController)
   .controller('WinesShowController', WinesShowController)
   .factory('WineFactory', WineFactory)
@@ -11,14 +11,20 @@ angular.module('WineApp', [])
 // ROUTES //
 ////////////
 
-function config() {
+config.$inject = ['$stateProvider', '$urlRouterProvider'];
+function config($stateProvider, $urlRouterProvider) {
     // $locationProvider.html5Mode({
     //   enabled: true,
     //   requireBase: false
     // });
 
     // return to wine-index if bad route request
-    // $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/");
+
+    $stateProvider.state('home', {
+      url: '/',
+      template: 'Home.'
+    });
 
 }
 
